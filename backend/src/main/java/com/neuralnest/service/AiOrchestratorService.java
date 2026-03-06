@@ -115,11 +115,14 @@ public class AiOrchestratorService {
                 writer.write(verilogCode);
             }
 
-            // Path to validation script
+            // Build path dynamically based on environment (Docker vs Local)
             String scriptPath = new File("scripts/verify_rtl.py").getAbsolutePath();
+            if (new File("/app/scripts/verify_rtl.py").exists()) {
+                scriptPath = "/app/scripts/verify_rtl.py";
+            }
 
-            // Note: This assumes python is in the system PATH
-            ProcessBuilder pb = new ProcessBuilder("python", scriptPath, tempFile.getAbsolutePath());
+            // Using python3 explicitly to avoid alias issues in some Linux environments
+            ProcessBuilder pb = new ProcessBuilder("python3", scriptPath, tempFile.getAbsolutePath());
             Process p = pb.start();
 
             StringBuilder output = new StringBuilder();
