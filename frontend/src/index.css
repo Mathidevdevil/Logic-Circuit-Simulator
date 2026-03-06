@@ -210,3 +210,34 @@ body {
   white-space: pre-wrap;
   word-break: break-all;
 }
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  body {
+    overflow: auto; /* Allow scrolling on mobile */
+    height: auto;
+  }
+  
+  .app-container {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .cockpit {
+    flex-direction: column;
+    overflow: visible; /* Let it expand naturally */
+  }
+
+  .pane {
+    min-height: 50vh; /* Ensure each pane takes at least half the screen height when stacked */
+  }
+
+  .input-pane {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .code-pane {
+    border-top-left-radius: 0;
+  }
+}
