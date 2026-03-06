@@ -14,7 +14,8 @@ function App() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8080/api/generate-rtl', {
+      const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+      const response = await fetch(`${baseUrl}/api/generate-rtl`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
